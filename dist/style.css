@@ -1,0 +1,75 @@
+@viewport {
+    zoom: 1.0;
+    width: extent-to-zoom;
+}
+
+@-ms-viewport {
+    zoom: 1.0;
+    width: extent-to-zoom;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html
+{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+
+/* ------------------- */
+
+body {
+    font-family: sans-serif
+}
+
+.page {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        'header'
+        'main';
+}
+
+.page > .header {
+    grid-area: header;
+    background-color: lightcoral;
+    height: 50px;
+}
+
+.page > .main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        'projects todos';
+}
+
+.page > .main > .projects {
+    grid-area: projects;
+    background-color: lightskyblue;
+    min-width: 300px;
+}
+
+.page > .main > .todos {
+    grid-area: todos;
+    background-color: white;
+}
