@@ -1,3 +1,5 @@
+import { displayApp } from "./display.js"
+
 /* const person = [
     {
         name: "bob",
@@ -24,4 +26,4 @@ console.log(person);
 console.log(JSON.stringify(person));
  */
 
- 
+displayApp();
