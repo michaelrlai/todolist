@@ -86,15 +86,53 @@ body {
 
 .page > .main > .projects >.projects-container {
     margin-top: 80px;
-    margin-left: 50px;
 }
 
 .page > .main > .projects >.projects-container > .projects-button {
-    padding: 5px 0;
+    padding: 10px 40px;
     color: rgb(70, 70, 70);
+    margin: 0 15px;
+    height: auto;
+}
+
+.page > .main > .projects >.projects-container > .projects-list > .project {
+    padding: 10px 60px;
+    color: rgb(70, 70, 70);
+    margin: 0 15px;
+    height: auto;
+}
+
+.page > .main > .projects >.projects-container > .projects-list > .project:hover {
+    background-color: white;
+}
+
+.page > .main > .projects >.projects-container > .projects-button:hover {
+    background-color: white;
+}
+
+.page > .main > .projects >.projects-container > .projects-list.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page > .main > .projects >.projects-container > .projects-list.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .page > .main > .todos {
     grid-area: todos;
-    background-color: white;
+    background-color: lightgray
+}
+
+.page > .main > .todos > .todos-title {
+
+}
+
+.page > .main > .todos > .todos-container {
+
+}
+
+.page > .main > .todos > .todos-list {
+
 }
