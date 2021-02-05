@@ -44,11 +44,13 @@ console.table(testArray);
 display.createProjectsList(testArray);
 
 document.addEventListener("click", function (e) {
-  console.log(e.target);
-  if (e.target.matches(".button-inbox")) {
-    display.showInbox();
-  }
-  if (e.target.matches(".button-projects")) {
-    display.toggleProjectsList();
-  }
+    console.log(e.target);
+    if (e.target.matches(".button-inbox")) {
+        display.showInbox();
+    }
+    if (e.target.matches(".button-projects")) {
+        display.toggleProjectsList();
+    }
+    if (e.target.matches(".project")) {
+    }
 });
