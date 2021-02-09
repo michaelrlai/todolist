@@ -5,6 +5,7 @@ class Task {
         this.priority = priority;
         this.dueDate = dueDate;
         this.description = description;
+        this.index = title + allTasks.length;
     }
 }
 
@@ -31,4 +32,22 @@ export const getProjects = function (tasks) {
         .filter((task, index, self) => self.indexOf(task) === index)
         .sort();
     return projectsList;
+};
+
+export const changePriority = function (id) {
+    let prio;
+    const newId = id.slice(9);
+    allTasks.forEach((element) => {
+        if (element.index === newId) {
+            if (element.priority === "low") {
+                element.priority = "medium";
+            } else if (element.priority === "medium") {
+                element.priority = "high";
+            } else if (element.priority === "high") {
+                element.priority = "low";
+            }
+            prio = element.priority;
+        }
+    });
+    return prio;
 };

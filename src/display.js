@@ -1,3 +1,5 @@
+import { formatDistanceStrictWithOptions } from "date-fns/fp";
+
 const displayHeader = (function () {
     // Create and display header
     const header = document.createElement("div");
@@ -131,6 +133,7 @@ export const showProject = function (currentProject, tasks) {
         todo.classList.add("project-todo");
 
         const todoTitle = document.createElement("div");
+        todoTitle.id = element.index;
         todoTitle.classList.add("todo-title");
         todoTitle.textContent = element.title;
         todo.appendChild(todoTitle);
@@ -146,27 +149,74 @@ export const showProject = function (currentProject, tasks) {
         todoButtons.appendChild(todoDue);
 
         const todoPriority = document.createElement("div");
+        todoPriority.id = `priority-${element.index}`;
         todoPriority.classList.add("todo-button");
         todoPriority.classList.add("todo-priority");
         todoPriority.textContent = element.priority;
+        if (element.priority === "low") {
+            todoPriority.style.backgroundColor = "rgb(100, 200, 200)";
+        } else if (element.priority === "medium") {
+            todoPriority.style.backgroundColor = "rgb(255, 210, 180)";
+        } else if (element.priority === "high") {
+            todoPriority.style.backgroundColor = "rgb(240, 150, 150)";
+        }
         todoButtons.appendChild(todoPriority);
+
+        document.querySelector(".todos-list").appendChild(todo);
+
+        const todoExpanded = document.createElement("div");
+        todoExpanded.id = `expanded-${element.index}`;
+        todoExpanded.classList.add("todo-expanded");
+        todoExpanded.classList.add("project-todo");
+
+        const todoDescription = document.createElement("div");
+        todoDescription.classList.add("todo-description");
+        todoDescription.textContent = "hi";
+        todoExpanded.appendChild(todoDescription);
+
+        const todoExpandedButtons = document.createElement("div");
+        todoExpandedButtons.classList.add("todo-expanded-buttons");
+        todoExpanded.appendChild(todoExpandedButtons);
 
         const todoEdit = document.createElement("img");
         todoEdit.classList.add("todo-button");
         todoEdit.src = "images/pencil-line.svg";
         todoEdit.classList.add("todo-edit");
-        todoButtons.appendChild(todoEdit);
+        todoExpandedButtons.appendChild(todoEdit);
 
         const todoDelete = document.createElement("img");
         todoDelete.classList.add("todo-button");
         todoDelete.src = "images/delete-line.svg";
         todoDelete.classList.add("todo-delete");
-        todoButtons.appendChild(todoDelete);
+        todoExpandedButtons.appendChild(todoDelete);
 
-        document.querySelector(".todos-list").appendChild(todo);
+        document.querySelector(".todos-list").appendChild(todoExpanded);
 
         /*         todo.textContent = `${element.title} Priority: ${element.priority} Due: ${element.dueDate}`;
         todo.classList.add("project-todo");
         document.querySelector(".todos-list").appendChild(todo); */
     });
+};
+
+export const showExpanded = function (id) {
+    document.getElementById(`expanded-${id}`).classList.add("show");
+};
+
+export const hideExpanded = function (id) {
+    document.getElementById(`expanded-${id}`).classList.remove("show");
+};
+
+export const changePriorityIcon = function (id, priority) {
+    console.log(id);
+    const priorityIcon = document.getElementById(id);
+    if (priority === "low") {
+        priorityIcon.style.backgroundColor = "rgb(100, 200, 200)";
+        priorityIcon.textContent = "low";
+    } else if (priority === "medium") {
+        priorityIcon.style.backgroundColor = "rgb(255, 210, 180)";
+        priorityIcon.textContent = "medium";
+    } else if (priority === "high") {
+        priorityIcon.style.backgroundColor = "rgb(240, 150, 150)";
+        priorityIcon.textContent = "high";
+    }
 };
