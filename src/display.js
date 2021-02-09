@@ -4,6 +4,11 @@ const displayHeader = (function () {
     header.classList.add("header");
     document.querySelector(".page").appendChild(header);
 
+    const appTitle = document.createElement("div");
+    appTitle.id = "app-title";
+    appTitle.textContent = "Todo List";
+    header.appendChild(appTitle);
+
     const headerButtonContainer = document.createElement("div");
     headerButtonContainer.classList.add("header-button-container");
     header.appendChild(headerButtonContainer);
@@ -38,7 +43,9 @@ const displayProjects = (function () {
         const buttons = ["Inbox", "Projects"];
         buttons.forEach((element) => {
             const button = document.createElement("div");
+            button.id = element;
             button.classList.add("button");
+            button.classList.add("project");
             button.classList.add("projects-button");
             button.classList.add(`button-${element.toLowerCase()}`);
             button.textContent = element;
@@ -54,22 +61,27 @@ const displayProjects = (function () {
     })();
 })();
 
-export const createProjectsList = function (tasks) {
+export const createProjectsList = function (projects) {
     const oldProjectsList = document.querySelector(".projects-list");
     while (oldProjectsList.firstChild)
         oldProjectsList.removeChild(oldProjectsList.firstChild);
-    const projectsList = tasks // Display only projects, removes duplicates, sorts alpha
-        .map((task) => task.project)
-        .filter((task, index, self) => self.indexOf(task) === index)
-        .sort();
-    projectsList.forEach((element) => {
+
+    projects.forEach((element) => {
         const project = document.createElement("div");
+        project.id = element;
         project.classList.add("button");
         project.classList.add("project");
         project.classList.add(element);
         project.textContent = element;
         document.querySelector(".projects-list").appendChild(project);
     });
+    const project = document.createElement("div");
+    project.id = "add-project";
+    project.classList.add("button");
+    project.classList.add("project");
+    project.classList.add("add-project");
+    project.textContent = "+ Add project";
+    document.querySelector(".projects-list").appendChild(project);
 };
 
 export const toggleProjectsList = function () {
@@ -84,7 +96,7 @@ export const toggleProjectsList = function () {
     }
 };
 
-const displayTodos = (function () {
+const createTodos = (function () {
     const todos = document.createElement("div");
     todos.classList.add("todos");
     document.querySelector(".main").appendChild(todos);
@@ -95,7 +107,6 @@ const displayTodos = (function () {
 
     const container = document.createElement("div");
     container.classList.add("todos-container");
-    container.textContent = "todos container";
     todos.appendChild(container);
 
     const list = document.createElement("div");
@@ -104,7 +115,58 @@ const displayTodos = (function () {
     container.appendChild(list);
 })();
 
-export const showInbox = function () {
-    console.log("showInbox");
-    document.querySelector(".todos-title").textContent = "Inbox";
+export const showProject = function (currentProject, tasks) {
+    const todosTitle = document.querySelector(".todos-title");
+    todosTitle.textContent = currentProject;
+
+    const projectTodos = tasks.filter(function (task) {
+        if (task.project === currentProject) return true;
+    });
+
+    const oldTodos = document.querySelector(".todos-list");
+    while (oldTodos.firstChild) oldTodos.removeChild(oldTodos.firstChild);
+
+    projectTodos.forEach((element) => {
+        const todo = document.createElement("div");
+        todo.classList.add("project-todo");
+
+        const todoTitle = document.createElement("div");
+        todoTitle.classList.add("todo-title");
+        todoTitle.textContent = element.title;
+        todo.appendChild(todoTitle);
+
+        const todoButtons = document.createElement("div");
+        todoButtons.classList.add("todo-buttons");
+        todo.appendChild(todoButtons);
+
+        const todoDue = document.createElement("div");
+        todoDue.classList.add("todo-button");
+        todoDue.classList.add("todo-due");
+        todoDue.textContent = element.dueDate;
+        todoButtons.appendChild(todoDue);
+
+        const todoPriority = document.createElement("div");
+        todoPriority.classList.add("todo-button");
+        todoPriority.classList.add("todo-priority");
+        todoPriority.textContent = element.priority;
+        todoButtons.appendChild(todoPriority);
+
+        const todoEdit = document.createElement("img");
+        todoEdit.classList.add("todo-button");
+        todoEdit.src = "images/pencil-line.svg";
+        todoEdit.classList.add("todo-edit");
+        todoButtons.appendChild(todoEdit);
+
+        const todoDelete = document.createElement("img");
+        todoDelete.classList.add("todo-button");
+        todoDelete.src = "images/delete-line.svg";
+        todoDelete.classList.add("todo-delete");
+        todoButtons.appendChild(todoDelete);
+
+        document.querySelector(".todos-list").appendChild(todo);
+
+        /*         todo.textContent = `${element.title} Priority: ${element.priority} Due: ${element.dueDate}`;
+        todo.classList.add("project-todo");
+        document.querySelector(".todos-list").appendChild(todo); */
+    });
 };
