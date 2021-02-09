@@ -6,7 +6,7 @@ const displayHeader = (function () {
 
     const appTitle = document.createElement("div");
     appTitle.id = "app-title";
-    appTitle.textContent = "Todo List";
+    appTitle.textContent = "To-do List";
     header.appendChild(appTitle);
 
     const headerButtonContainer = document.createElement("div");
