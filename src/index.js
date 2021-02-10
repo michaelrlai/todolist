@@ -24,6 +24,7 @@ document.addEventListener("click", function (e) {
         e.target.id !== "add-project"
     ) {
         currentProject = e.target.id;
+        console.log(currentProject);
         display.showProject(currentProject, tasks);
     }
     if (e.target.matches(".todo-title")) {
@@ -43,7 +44,7 @@ document.addEventListener("click", function (e) {
         const deleteIndex = deleteTask(e.target.id);
         display.deleteProject(deleteIndex);
     }
-    console.table(getTasks());
+    //    console.table(getTasks());
 });
 
 const tasks = getTasks();
@@ -54,7 +55,5 @@ let currentProject = "Inbox";
 display.createProjectsList(projects);
 
 display.showProject(currentProject, tasks);
-
-console.table(tasks);
 
 //console.log(tasks);

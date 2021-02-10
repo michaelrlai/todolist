@@ -86,13 +86,15 @@ export const createProjectsList = function (projects) {
         oldProjectsList.removeChild(oldProjectsList.firstChild);
 
     projects.forEach((element) => {
-        const project = document.createElement("div");
-        project.id = element;
-        project.classList.add("button");
-        project.classList.add("project");
-        project.classList.add(element);
-        project.textContent = element;
-        document.querySelector(".projects-list").appendChild(project);
+        if (element !== "Inbox") {
+            const project = document.createElement("div");
+            project.id = element;
+            project.classList.add("button");
+            project.classList.add("project");
+            project.classList.add(element);
+            project.textContent = element;
+            document.querySelector(".projects-list").appendChild(project);
+        }
     });
     const project = document.createElement("div");
     project.id = "add-project";
