@@ -51,3 +51,13 @@ export const changePriority = function (id) {
     });
     return prio;
 };
+
+export const deleteTask = function (id) {
+    id = id.slice(7);
+    const tasksById = allTasks.map(function (task) {
+        return task.index;
+    });
+    const indexToRemove = tasksById.indexOf(id);
+    allTasks.splice(indexToRemove, 1);
+    return id;
+};

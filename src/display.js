@@ -44,6 +44,10 @@ const displayProjects = (function () {
         // Create and display list of projects
         const buttons = ["Inbox", "Projects"];
         buttons.forEach((element) => {
+            const buttonContainer = document.createElement("div");
+            buttonContainer.id = `${element.toLowerCase()}-button-container`;
+            buttonContainer.classList.add("button-container");
+
             const button = document.createElement("div");
             button.id = element;
             button.classList.add("button");
@@ -51,8 +55,21 @@ const displayProjects = (function () {
             button.classList.add("projects-button");
             button.classList.add(`button-${element.toLowerCase()}`);
             button.textContent = element;
-            projectsContainer.appendChild(button);
+            buttonContainer.appendChild(button);
+            projectsContainer.appendChild(buttonContainer);
         });
+
+        const inboxIcon = document.createElement("img");
+        inboxIcon.id = "inbox-icon";
+        inboxIcon.src = "images/mail-line.svg";
+        document.getElementById("inbox-button-container").prepend(inboxIcon);
+
+        const projectsIcon = document.createElement("img");
+        projectsIcon.id = "projects-icon";
+        projectsIcon.src = "images/folder-line.svg";
+        document
+            .getElementById("projects-button-container")
+            .prepend(projectsIcon);
     })();
 
     const projectsList = (function () {
@@ -130,6 +147,7 @@ export const showProject = function (currentProject, tasks) {
 
     projectTodos.forEach((element) => {
         const todo = document.createElement("div");
+        todo.id = `project-todo-${element.index}`;
         todo.classList.add("project-todo");
 
         const todoTitle = document.createElement("div");
@@ -171,7 +189,7 @@ export const showProject = function (currentProject, tasks) {
 
         const todoDescription = document.createElement("div");
         todoDescription.classList.add("todo-description");
-        todoDescription.textContent = "hi";
+        todoDescription.textContent = element.description;
         todoExpanded.appendChild(todoDescription);
 
         const todoExpandedButtons = document.createElement("div");
@@ -185,6 +203,7 @@ export const showProject = function (currentProject, tasks) {
         todoExpandedButtons.appendChild(todoEdit);
 
         const todoDelete = document.createElement("img");
+        todoDelete.id = `delete-${element.index}`;
         todoDelete.classList.add("todo-button");
         todoDelete.src = "images/delete-line.svg";
         todoDelete.classList.add("todo-delete");
@@ -219,4 +238,9 @@ export const changePriorityIcon = function (id, priority) {
         priorityIcon.style.backgroundColor = "rgb(240, 150, 150)";
         priorityIcon.textContent = "high";
     }
+};
+
+export const deleteProject = function (id) {
+    document.getElementById(`project-todo-${id}`).remove();
+    document.getElementById(`expanded-${id}`).remove();
 };

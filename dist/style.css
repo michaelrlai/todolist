@@ -95,11 +95,42 @@ body {
     margin-top: 80px;
 }
 
-.page > .main > .projects > .projects-container > .projects-button {
-    padding: 10px 40px;
+.page > .main > .projects > .projects-container > .button-container {
+    padding: 10px 80px;
     color: rgb(70, 70, 70);
     margin: 0 15px;
     height: auto;
+    display: flex;
+}
+
+.page
+    > .main
+    > .projects
+    > .projects-container
+    > .button-container
+    > #inbox-icon {
+    width: 22px;
+    position: absolute;
+    top: 137px;
+    left: 55px;
+    opacity: 0.6;
+}
+
+.page
+    > .main
+    > .projects
+    > .projects-container
+    > .button-container
+    > #projects-icon {
+    width: 22px;
+    position: absolute;
+    top: 175px;
+    left: 55px;
+    opacity: 0.6;
+}
+
+.page > .main > .projects > .projects-container > .button-container:hover {
+    background-color: white;
 }
 
 .page > .main > .projects > .projects-container > .projects-list > .project {
@@ -115,10 +146,6 @@ body {
     > .projects-container
     > .projects-list
     > .project:hover {
-    background-color: white;
-}
-
-.page > .main > .projects > .projects-container > .projects-button:hover {
     background-color: white;
 }
 
@@ -217,6 +244,7 @@ body {
     > .todo-buttons
     > .todo-priority {
     width: 80px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;

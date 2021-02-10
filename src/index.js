@@ -1,5 +1,11 @@
 import * as display from "./display";
-import { getProjects, getTasks, newTask, changePriority } from "./tasks";
+import {
+    getProjects,
+    getTasks,
+    newTask,
+    changePriority,
+    deleteTask,
+} from "./tasks";
 
 newTask("run", "Inbox", "medium", "25", "descrip");
 newTask("do run", "Inbox", "medium", "25", "descrip");
@@ -33,6 +39,11 @@ document.addEventListener("click", function (e) {
         const priority = changePriority(e.target.id);
         display.changePriorityIcon(e.target.id, priority);
     }
+    if (e.target.matches(".todo-delete")) {
+        const deleteIndex = deleteTask(e.target.id);
+        display.deleteProject(deleteIndex);
+    }
+    console.table(getTasks());
 });
 
 const tasks = getTasks();
