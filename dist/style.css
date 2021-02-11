@@ -103,6 +103,10 @@ body {
     display: flex;
 }
 
+.page > .main > .projects > .projects-container > .button-container:hover {
+    cursor: pointer;
+}
+
 .page
     > .main
     > .projects
@@ -114,6 +118,7 @@ body {
     top: 137px;
     left: 55px;
     opacity: 0.6;
+    z-index: 0;
 }
 
 .page
@@ -127,10 +132,12 @@ body {
     top: 175px;
     left: 55px;
     opacity: 0.6;
+    z-index: 0;
 }
 
 .page > .main > .projects > .projects-container > .button-container:hover {
     background-color: white;
+    border-radius: 5px;
 }
 
 .page > .main > .projects > .projects-container > .projects-list > .project {
@@ -147,6 +154,7 @@ body {
     > .projects-list
     > .project:hover {
     background-color: white;
+    border-radius: 5px;
 }
 
 .page > .main > .projects > .projects-container > .projects-list.hide {
@@ -157,6 +165,21 @@ body {
 .page > .main > .projects > .projects-container > .projects-list.show {
     opacity: 1;
     pointer-events: auto;
+}
+
+.page
+    > .main
+    > .projects
+    > .projects-container
+    > .projects-list
+    > .add-project
+    > #new-project-input {
+    font-size: 16px;
+    height: 24px;
+    width: 155px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
 }
 
 .page > .main > .todos {
@@ -336,5 +359,21 @@ body {
     > .todo-expanded-buttons
     > .todo-delete:hover {
     cursor: pointer;
-    color: rgb(109, 221, 216);
+}
+
+.page > .modal-container {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page > .modal-container > .modal {
+    background-color: white;
+    width: 500px;
+    height: 300px;
 }

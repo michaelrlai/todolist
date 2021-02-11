@@ -228,7 +228,6 @@ export const hideExpanded = function (id) {
 };
 
 export const changePriorityIcon = function (id, priority) {
-    console.log(id);
     const priorityIcon = document.getElementById(id);
     if (priority === "low") {
         priorityIcon.style.backgroundColor = "rgb(100, 200, 200)";
@@ -245,4 +244,29 @@ export const changePriorityIcon = function (id, priority) {
 export const deleteProject = function (id) {
     document.getElementById(`project-todo-${id}`).remove();
     document.getElementById(`expanded-${id}`).remove();
+};
+
+export const addProject = function () {
+    /*     const modalContainer = document.createElement("div");
+    modalContainer.classList.add("modal-container");
+
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    modalContainer.appendChild(modal);
+
+    const modalMessage = document.createElement("div");
+    modalMessage.classList.add("modal-message");
+    modalMessage.textContent = "Enter name of project: ";
+    modal.appendChild(modalMessage);
+
+    document.querySelector(".page").append(modalContainer); */
+
+    document.querySelector(".add-project").textContent = "";
+
+    const newProject = document.createElement("input");
+    newProject.id = "new-project-input";
+    newProject.type = "text";
+    document.querySelector(".add-project").appendChild(newProject);
+    document.getElementById("new-project-input").focus();
+    document.querySelector("#add-project").classList.add("no-highlight");
 };

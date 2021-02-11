@@ -15,7 +15,15 @@ newTask("eat food", "sfdasruject2", "low", "23", "DESCRIPT");
 newTask("drive car", "sfdasruject2", "low", "23", "DESCRIPT");
 
 document.addEventListener("click", function (e) {
-    if (e.target.matches(".button-projects")) {
+    console.log(e.target);
+    if (e.target.matches("#inbox-button-container")) {
+        currentProject = "Inbox";
+        display.showProject(currentProject, tasks);
+    }
+    if (
+        e.target.matches("#projects-button-container") ||
+        e.target.matches("#Projects")
+    ) {
         display.toggleProjectsList();
     }
     if (
@@ -24,7 +32,6 @@ document.addEventListener("click", function (e) {
         e.target.id !== "add-project"
     ) {
         currentProject = e.target.id;
-        console.log(currentProject);
         display.showProject(currentProject, tasks);
     }
     if (e.target.matches(".todo-title")) {
@@ -43,6 +50,9 @@ document.addEventListener("click", function (e) {
     if (e.target.matches(".todo-delete")) {
         const deleteIndex = deleteTask(e.target.id);
         display.deleteProject(deleteIndex);
+    }
+    if (e.target.matches(".add-project")) {
+        display.addProject();
     }
     //    console.table(getTasks());
 });
