@@ -14,6 +14,17 @@ newTask("jog", "ardfasfuject2", "high", "23", "DESCRIPT");
 newTask("eat food", "sfdasruject2", "low", "23", "DESCRIPT");
 newTask("drive car", "sfdasruject2", "low", "23", "DESCRIPT");
 
+const tasks = getTasks();
+const projects = getProjects(tasks);
+
+let currentProject = "Inbox";
+
+display.createProjectsList(projects);
+
+display.showProject(currentProject, tasks);
+
+display.addProject();
+
 document.addEventListener("click", function (e) {
     console.log(e.target);
     if (e.target.matches("#inbox-button-container")) {
@@ -52,18 +63,56 @@ document.addEventListener("click", function (e) {
         display.deleteProject(deleteIndex);
     }
     if (e.target.matches(".add-project")) {
-        display.addProject();
+        document.querySelector(".modal-container").classList.add("show-modal");
+        document.querySelector(".modal-input").focus();
+    } else if (!e.target.closest(".modal")) {
+        document
+            .querySelector(".modal-container")
+            .classList.remove("show-modal");
+        document.querySelector(".modal-input").value = "";
+        document.querySelector(".modal-input").blur();
     }
-    //    console.table(getTasks());
+    if (e.target.matches(".modal-submit")) {
+        if (document.querySelector(".modal-input").value !== "") {
+            const newProjectInput = document.querySelector(".modal-input")
+                .value;
+            projects.push(newProjectInput);
+            projects.sort();
+            display.createProjectsList(projects);
+            document
+                .querySelector(".modal-container")
+                .classList.remove("show-modal");
+            document.querySelector(".modal-input").value = "";
+            document.querySelector(".modal-input").blur();
+        }
+    }
 });
 
-const tasks = getTasks();
-const projects = getProjects(tasks);
-
-let currentProject = "Inbox";
-
-display.createProjectsList(projects);
-
-display.showProject(currentProject, tasks);
+document
+    .querySelector(".modal-input")
+    .addEventListener("keydown", function (e) {
+        if (e.keyCode === 27) {
+            document
+                .querySelector(".modal-container")
+                .classList.remove("show-modal");
+            document.querySelector(".modal-input").value = "";
+            document.querySelector(".modal-input").blur();
+        }
+        if (
+            e.keyCode === 13 &&
+            document.querySelector(".modal-input").value !== ""
+        ) {
+            const newProjectInput = document.querySelector(".modal-input")
+                .value;
+            projects.push(newProjectInput);
+            projects.sort();
+            display.createProjectsList(projects);
+            document
+                .querySelector(".modal-container")
+                .classList.remove("show-modal");
+            document.querySelector(".modal-input").value = "";
+            document.querySelector(".modal-input").blur();
+        }
+    });
 
 //console.log(tasks);

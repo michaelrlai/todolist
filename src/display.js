@@ -247,8 +247,9 @@ export const deleteProject = function (id) {
 };
 
 export const addProject = function () {
-    /*     const modalContainer = document.createElement("div");
+    const modalContainer = document.createElement("div");
     modalContainer.classList.add("modal-container");
+    document.querySelector(".page").append(modalContainer);
 
     const modal = document.createElement("div");
     modal.classList.add("modal");
@@ -256,17 +257,18 @@ export const addProject = function () {
 
     const modalMessage = document.createElement("div");
     modalMessage.classList.add("modal-message");
-    modalMessage.textContent = "Enter name of project: ";
+    modalMessage.textContent = "Name of project:";
     modal.appendChild(modalMessage);
 
-    document.querySelector(".page").append(modalContainer); */
+    const modalInput = document.createElement("input");
+    modalInput.classList.add("modal-input");
+    modalInput.type = "text";
+    modal.appendChild(modalInput);
 
-    document.querySelector(".add-project").textContent = "";
+    modal.appendChild(document.createElement("br"));
 
-    const newProject = document.createElement("input");
-    newProject.id = "new-project-input";
-    newProject.type = "text";
-    document.querySelector(".add-project").appendChild(newProject);
-    document.getElementById("new-project-input").focus();
-    document.querySelector("#add-project").classList.add("no-highlight");
+    const modalSubmit = document.createElement("button");
+    modalSubmit.classList.add("modal-submit");
+    modalSubmit.textContent = "Create";
+    modal.appendChild(modalSubmit);
 };
