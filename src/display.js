@@ -272,3 +272,55 @@ export const addProject = function () {
     modalSubmit.textContent = "Create";
     modal.appendChild(modalSubmit);
 };
+
+export const addTask = function () {
+    const addTaskModalContainer = document.createElement("div");
+    addTaskModalContainer.classList.add("add-task-modal-container");
+    document.querySelector(".page").append(addTaskModalContainer);
+
+    const addTaskModal = document.createElement("div");
+    addTaskModal.classList.add("add-task-modal");
+    addTaskModalContainer.appendChild(addTaskModal);
+
+    const titleContainer = document.createElement("div");
+    titleContainer.classList.add("title-container");
+    addTaskModal.appendChild(titleContainer);
+
+    const titleMessage = document.createElement("div");
+    titleMessage.classList.add("title-message");
+    titleMessage.textContent = "Task title:";
+    titleContainer.appendChild(titleMessage);
+
+    const titleInput = document.createElement("input");
+    titleInput.classList.add("title-input");
+    titleInput.type = "text";
+    titleContainer.appendChild(titleInput);
+
+    const dueContainer = document.createElement("div");
+    dueContainer.classList.add("due-container");
+    addTaskModal.appendChild(dueContainer);
+
+    const dueMessage = document.createElement("div");
+    dueMessage.classList.add("due-message");
+    dueMessage.textContent = "Due date:";
+    dueContainer.appendChild(dueMessage);
+
+    const dueInput = document.createElement("input");
+    dueInput.classList.add("due-input");
+    dueInput.type = "text";
+    dueContainer.appendChild(dueInput);
+
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
+    addTaskModal.appendChild(descriptionContainer);
+
+    const descriptionMessage = document.createElement("div");
+    descriptionMessage.classList.add("description-message");
+    descriptionMessage.textContent = "Description:";
+    descriptionContainer.appendChild(descriptionMessage);
+
+    const descriptionInput = document.createElement("input");
+    descriptionInput.classList.add("description-input");
+    descriptionInput.type = "text";
+    descriptionContainer.appendChild(descriptionInput);
+};

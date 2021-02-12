@@ -25,6 +25,8 @@ display.showProject(currentProject, tasks);
 
 display.addProject();
 
+display.addTask();
+
 document.addEventListener("click", function (e) {
     console.log(e.target);
     if (e.target.matches("#inbox-button-container")) {
@@ -82,10 +84,21 @@ document.addEventListener("click", function (e) {
             document
                 .querySelector(".modal-container")
                 .classList.remove("show-modal");
+
+            currentProject = newProjectInput;
+            display.showProject(currentProject, tasks);
+
             document.querySelector(".modal-input").value = "";
             document.querySelector(".modal-input").blur();
         }
     }
+    if (e.target.matches(".header-button")) {
+        console.log("YES");
+        document
+            .querySelector(".add-task-modal-container")
+            .classList.add("show-add-task-modal-container");
+    }
+    console.log("Current project: " + currentProject);
 });
 
 document
@@ -110,9 +123,14 @@ document
             document
                 .querySelector(".modal-container")
                 .classList.remove("show-modal");
+
+            currentProject = newProjectInput;
+            display.showProject(currentProject, tasks);
+
             document.querySelector(".modal-input").value = "";
             document.querySelector(".modal-input").blur();
         }
+        console.log(currentProject);
     });
 
 //console.log(tasks);
